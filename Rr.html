@@ -31,8 +31,8 @@
 												<input type="password" class="form-style" placeholder="Password">
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
-											<a href="https://www.web-leb.com/code" class="btn mt-4">Login</a>
-                      <p class="mb-0 mt-4 text-center"><a href="https://www.web-leb.com/code" class="link">Forgot your password?</a></p>
+											<a href="#" class="btn mt-4">Login</a>
+                      <p class="mb-0 mt-4 text-center"><a href="#" class="link">Forgot your password?</a></p>
 				      					</div>
 			      					</div>
 			      				</div>
@@ -56,16 +56,58 @@
 												<input type="password" class="form-style" placeholder="Password">
 												<i class="input-icon uil uil-lock-alt"></i>
 											</div>
-											<a href="https://www.web-leb.com/code" class="btn mt-4">Register</a>
-				      					</div>
-			      					</div>
-			      				</div>
-			      			</div>
-			      		</div>
-			      	</div>
-		      	</div>
-	      	</div>
-	    </div>
-	</div>
+				<script>// Define a module for the login/signup functionality
+const AuthModule = (function() {
+
+  // Private variables
+  let loginCard, signupCard, checkbox, checkboxLabel;
+
+  // Private functions
+  function toggleCard() {
+    checkboxLabel.classList.toggle("active");
+    document.querySelector(".card-3d-wrapper").classList.toggle("flipped");
+  }
+
+  function handleLoginSubmit(event) {
+    event.preventDefault();
+    const email = document.querySelector("#login-email").value;
+    const password = document.querySelector("#login-password").value;
+    console.log(`Login form submitted with email: ${email} and password: ${password}`);
+  }
+
+  function handleSignupSubmit(event) {
+    event.preventDefault();
+    const name = document.querySelector("#signup-name").value;
+    const phone = document.querySelector("#signup-phone").value;
+    const email = document.querySelector("#signup-email").value;
+    const password = document.querySelector("#signup-password").value;
+    console.log(`Signup form submitted with name: ${name}, phone: ${phone}, email: ${email} and password: ${password}`);
+  }
+
+  // Public functions
+  function init() {
+    loginCard = document.querySelector(".card-front");
+    signupCard = document.querySelector(".card-back");
+    checkbox = document.querySelector("#reg-log");
+    checkboxLabel = document.querySelector("label[for='reg-log']");
+
+    checkboxLabel.addEventListener("click", toggleCard);
+
+    document.querySelector("#login-form").addEventListener("submit", handleLoginSubmit);
+
+    document.querySelector("#signup-form").addEventListener("submit", handleSignupSubmit);
+  }
+
+  // Return public methods
+  return {
+    init: init
+  };
+
+})();
+
+// Wait until the DOM is ready
+document.addEventListener("DOMContentLoaded", function() {
+  AuthModule.init();
+}); </script>
 </body>
 </html>
