@@ -35,6 +35,69 @@ The CSS code is organized into several sections that target different aspects of
 
 The CSS code also uses some advanced CSS techniques, such as flexbox and pseudo-elements, to create more complex layouts and effects.
 
+##Sure, here's a simple README for the JavaScript file:
+
+# AuthModule.js
+
+This JavaScript module provides a simple login/signup functionality for a web page. It listens for form submissions and logs the input values to the console.
+
+## Usage
+
+1. Include the `AuthModule.js` file in your HTML file, after the `jQuery` and `Bootstrap` dependencies:
+
+```html```
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="AuthModule.js"></script>
+```
+
+2. Call the `init()` method of the `AuthModule` module after the DOM is ready:
+
+```html```
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    AuthModule.init();
+  });
+</script>
+```
+
+3. Add the `login-form` and `signup-form` IDs to the login and signup forms, respectively:
+
+`html`
+
+<form id="login-form">
+  <!-- Login form fields -->
+</form>
+
+<form id="signup-form">
+  <!-- Signup form fields -->
+</form>
+```
+
+4. Customize the `handleLoginSubmit()` and `handleSignupSubmit()` functions in the `AuthModule` module to suit your needs:
+
+javascript
+function handleLoginSubmit(event) {
+  event.preventDefault();
+  const email = document.querySelector("#login-email").value;
+  const password = document.querySelector("#login-password").value;
+  console.log(`Login form submitted with email: ${email} and password: ${password}`);
+}
+
+function handleSignupSubmit(event) {
+  event.preventDefault();
+  const name = document.querySelector("#signup-name").value;
+  const phone = document.querySelector("#signup-phone").value;
+  const email = document.querySelector("#signup-email").value;
+  const password = document.querySelector("#signup-password").value;
+  console.log(`Signup form submitted with name: ${name}, phone: ${phone}, email: ${email} and password: ${password}`);
+}
+
+## Dependencies
+
+- jQuery v3.6.0
+- Bootstrap v4.5.0
 ## Contributing
 
 Feel free to fork the repository and make your own modifications to the code. Pull requests are welcome!
