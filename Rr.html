@@ -6,108 +6,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="styling.css">
+  <link rel="stylesheet" href="styling.css">
 </head>
 <body>
-	<div class="section">
-		<div class="container">
-			<div class="row full-height justify-content-center">
-				<div class="col-12 text-center align-self-center py-5">
-					<div class="section pb-5 pt-5 pt-sm-2 text-center">
-						<h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
-			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-			          	<label for="reg-log"></label>
-						<div class="card-3d-wrap mx-auto">
-							<div class="card-3d-wrapper">
-								<div class="card-front">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Log In</h4>
-											<div class="form-group">
-												<input type="email" class="form-style" placeholder="Email">
-												<i class="input-icon uil uil-at"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password">
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="#" class="btn mt-4">Login</a>
+  <div class="section">
+    <div class="container">
+      <div class="row full-height justify-content-center">
+        <div class="col-12 text-center align-self-center py-5">
+          <div class="section pb-5 pt-5 pt-sm-2 text-center">
+            <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+            <label for="reg-log"></label>
+            <div class="card-3d-wrap mx-auto">
+              <div class="card-3d-wrapper">
+                <div class="card-front">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                      <h4 class="mb-4 pb-3">Log In</h4>
+                      <form id="login-form">
+                        <div class="form-group">
+                          <input type="email" class="form-style" id="login-email" placeholder="Email">
+                          <i class="input-icon uil uil-at"></i>
+                        </div>  
+                        <div class="form-group mt-2">
+                          <input type="password" class="form-style" id="login-password" placeholder="Password">
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
+                        <button type="submit" class="btn mt-4">Login</button>
+                      </form>
                       <p class="mb-0 mt-4 text-center"><a href="#" class="link">Forgot your password?</a></p>
-				      					</div>
-			      					</div>
-			      				</div>
-								<div class="card-back">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-3 pb-3">Sign Up</h4>
-											<div class="form-group">
-												<input type="text" class="form-style" placeholder="Full Name">
-												<i class="input-icon uil uil-user"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="tel" class="form-style" placeholder="Phone Number">
-												<i class="input-icon uil uil-phone"></i>
-											</div>	
-                      <div class="form-group mt-2">
-												<input type="email" class="form-style" placeholder="Email">
-												<i class="input-icon uil uil-at"></i>
-											</div>
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password">
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-				<script>// Define a module for the login/signup functionality
-const AuthModule = (function() {
+                    </div>
+                  </div>
+                </div>
+                <div class="card-back">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                      <h4 class="mb-3 pb-3">Sign Up</h4>
+                      <form id="signup-form">
+                        <div class="form-group">
+                          <input type="text" class="form-style" id="signup-name" placeholder="Full Name">
+                          <i class="input-icon uil uil-user"></i>
+                        </div>  
+                        <div class="form-group mt-2">
+                          <input type="tel" class="form-style" id="signup-phone" placeholder="Phone Number">
+                          <i class="input-icon uil uil-phone"></i>
+                        </div>  
+                        <div class="form-group mt-2">
+                          <input type="email" class="form-style" id="signup-email" placeholder="Email">
+                          <i class="input-icon uil uil-at"></i>
+                        </div>
+                        <div class="form-group mt-2">
+                          <input type="password" class="form-style" id="signup-password" placeholder="Password">
+                          <i class="input-icon uil uil-lock-alt"></i>
+                        </div>
+                        <button type="submit" class="btn mt-4">Sign Up</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script>
+       'use strict';
 
+const AuthModule = (() => {
   // Private variables
-  let loginCard, signupCard, checkbox, checkboxLabel;
+  const loginCard = document.querySelector('.card-front');
+  const signupCard = document.querySelector('.card-back');
+  const checkbox = document.querySelector('#reg-log');
+  const checkboxLabel = document.querySelector("label[for='reg-log']");
 
   // Private functions
   function toggleCard() {
-    checkboxLabel.classList.toggle("active");
-    document.querySelector(".card-3d-wrapper").classList.toggle("flipped");
+    checkboxLabel.classList.toggle('active');
+    document.querySelector('.card-3d-wrapper').classList.toggle('flipped');
   }
 
-  function handleLoginSubmit(event) {
+  function handleFormSubmit(event) {
     event.preventDefault();
-    const email = document.querySelector("#login-email").value;
-    const password = document.querySelector("#login-password").value;
-    console.log(`Login form submitted with email: ${email} and password: ${password}`);
-  }
+    const form = event.target;
+    const name = form.querySelector('#name').value.trim();
+    const phone = form.querySelector('#phone').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const password = form.querySelector('#password').value.trim();
 
-  function handleSignupSubmit(event) {
-    event.preventDefault();
-    const name = document.querySelector("#signup-name").value;
-    const phone = document.querySelector("#signup-phone").value;
-    const email = document.querySelector("#signup-email").value;
-    const password = document.querySelector("#signup-password").value;
-    console.log(`Signup form submitted with name: ${name}, phone: ${phone}, email: ${email} and password: ${password}`);
+    if (!email || !password) {
+      alert('Please enter your email and password.');
+      return;
+    }
+
+    if (form.id === 'signup-form' && (!name || !phone)) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+
+    if (form.id === 'login-form') {
+      console.log(`Login form submitted with email: ${email} and password: ${password}`);
+      // TODO: Add logic to authenticate user
+    } else {
+      console.log(`Signup form submitted with name: ${name}, phone: ${phone}, email: ${email} and password: ${password}`);
+      // TODO: Add logic to create new user
+    }
+
+    form.reset();
   }
 
   // Public functions
   function init() {
-    loginCard = document.querySelector(".card-front");
-    signupCard = document.querySelector(".card-back");
-    checkbox = document.querySelector("#reg-log");
-    checkboxLabel = document.querySelector("label[for='reg-log']");
-
-    checkboxLabel.addEventListener("click", toggleCard);
-
-    document.querySelector("#login-form").addEventListener("submit", handleLoginSubmit);
-
-    document.querySelector("#signup-form").addEventListener("submit", handleSignupSubmit);
+    checkboxLabel.addEventListener('click', toggleCard);
+    document.querySelector('#auth-forms').addEventListener('submit', handleFormSubmit);
   }
 
   // Return public methods
   return {
-    init: init
+    init,
   };
-
 })();
 
-// Wait until the DOM is ready
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', () => {
   AuthModule.init();
-}); </script>
+});
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
